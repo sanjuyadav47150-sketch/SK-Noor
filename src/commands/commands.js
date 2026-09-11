@@ -40,8 +40,33 @@ add("slowmode", "Set slowmode", PermissionFlagsBits.ManageChannels);
 commands.at(-1).addIntegerOption(o => o.setName("seconds").setDescription("0-21600").setRequired(true).setMinValue(0).setMaxValue(21600));
 add("say", "Make the bot send a message", PermissionFlagsBits.ManageMessages);
 commands.at(-1).addStringOption(o => o.setName("message").setDescription("Message").setRequired(true));
-add("config", "Configure logs");
-commands.at(-1).addSubcommand(s => s.setName("logs").setDescription("Set normal log channel").addChannelOption(o => o.setName("channel").setChannelTypes(ChannelType.GuildText).setRequired(true)))
+const configCommand = new SlashCommandBuilder()
+  .setName("config")
+  .setDescription("Configure logs")
+  .addSubcommand(s =>
+    s
+      .setName("logs")
+      .setDescription("Set normal log channel")
+      .addChannelOption(o =>
+        o
+          .setName("channel")
+          .setChannelTypes(ChannelType.GuildText)
+          .setRequired(true)
+      )
+  )
+  .addSubcommand(s =>
+    s
+      .setName("securitylogs")
+      .setDescription("Set security log channel")
+      .addChannelOption(o =>
+        o
+          .setName("channel")
+          .setChannelTypes(ChannelType.GuildText)
+          .setRequired(true)
+      )
+  );
+
+commands.push(configCommand);
 .addSubcommand(s => s.setName("securitylogs").setDescription("Set security log channel").addChannelOption(o => o.setName("channel").setChannelTypes(ChannelType.GuildText).setRequired(true)));
 add("ticket", "Ticket controls");
 commands.at(-1).addSubcommand(s => s.setName("setup").setDescription("Set ticket category/support role").addChannelOption(o => o.setName("category").setChannelTypes(ChannelType.GuildCategory)).addRoleOption(o => o.setName("support_role")))
