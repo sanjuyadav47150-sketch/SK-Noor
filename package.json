@@ -1,0 +1,17 @@
+{
+  "name": "all-in-one-discord-bot",
+  "version": "1.0.0",
+  "description": "All-in-one Discord moderation, tickets, security, triggers and utility bot.",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "register": "node src/registerCommands.js"
+  },
+  "engines": { "node": ">=20.0.0" },
+  "dependencies": {
+    "discord.js": "14.27.0",
+    "dotenv": "^17.2.2",
+    "mongoose": "^8.18.0"
+  }
+}
